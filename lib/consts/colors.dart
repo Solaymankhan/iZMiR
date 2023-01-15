@@ -8,3 +8,4 @@ const Color darkFontGreyColor=Color.fromRGBO(62, 68, 71, 1);
 const Color FontGreyColor=Color.fromRGBO(107, 115, 119, 1);
 const Color textFieldGreyColor=Color.fromRGBO(209, 209,209, 1);
 const Color lightGreyColor=Color.fromRGBO(239, 239, 239, 1);
+const Color orangeColor=Color.fromRGBO(247, 77, 1, 1);
