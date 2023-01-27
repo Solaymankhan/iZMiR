@@ -5,13 +5,61 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../shapes/buttons.dart';
+import '../shapes/all_product_cart.dart';
+import '../shapes/hot_deals_cart.dart';
+import '../shapes/other_products_cart.dart';
+import '../shapes/product_heading.dart';
+import '../shapes/circuler_buttons.dart';
+import '../shapes/sets_cart.dart';
 
-class home_page extends StatelessWidget {
+class home_page extends StatefulWidget {
   const home_page({Key? key}) : super(key: key);
 
   @override
+  State<home_page> createState() => _home_pageState();
+}
+
+class _home_pageState extends State<home_page> {
+
+  List<String> item = [];
+  bool isLoadingData = false;
+  bool hasMoreData = true;
+  final ScrollController _scrollController=ScrollController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _scrollController.addListener(() {
+      if(_scrollController.offset==_scrollController.position.maxScrollExtent){
+        getData();
+      }
+    });
+    super.initState();
+    getData();
+
+  }
+
+  void getData() async {
+    if (!isLoadingData && hasMoreData) {
+      isLoadingData = true;
+      setState(() {});
+      List<String> dummyDataList = item.length >= banner_list.length
+          ? []
+          : List.generate(banner_list.length<8?banner_list.length:8,
+              (index) => banner_list[index+item.length]);
+      if (dummyDataList.isEmpty) {
+        hasMoreData = false;
+      }
+      item.addAll(dummyDataList);
+      isLoadingData = false;
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var discount=15;
+    var discount = 15;
+    String description="sadfajof dfjaoij adoifj sdadifj oiddescription";
     var wdt = (MediaQuery.of(context).size.width);
     var het = (MediaQuery.of(context).size.height);
     return Container(
@@ -93,6 +141,7 @@ class home_page extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
+                controller: _scrollController,
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
@@ -117,806 +166,36 @@ class home_page extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        home_button(
-                            wdt, het, 'assets/icon/women_svg.svg', women),
-                        home_button(wdt, het, 'assets/icon/boy_svg.svg', men)
+                        circuler_button(wdt, het, men_icon, men),
+                        circuler_button(wdt, het, women_icon, women),
+                        circuler_button(wdt, het, t_shirt_icon, tshirt),
+                        circuler_button(wdt, het, polo_icon, polo),
                       ],
                     ),
                     10.heightBox,
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(sets,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        circuler_button(wdt, het, shirt_icon, shirt),
+                        circuler_button(wdt, het, pants_icon, pants),
+                        circuler_button(wdt, het, glasess_icon, glasess),
+                        circuler_button(wdt, het, more_icon, more)
+                      ],
                     ),
-                    Container(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              banner_list.length,
-                              (index) => Column(
-                                    children: [
-                                      Material(
-                                        child: InkWell(
-                                          onTap: () {},
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Ink(
-                                            height: 180,
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                color: lightGreyColor),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                        height: 100,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(6),
-                                                            image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: AssetImage(
-                                                                  banner_list[
-                                                                      index]),
-                                                            )))
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                Text(
-                                                  "Solaymanoeunoidupoicnv u pousioufcmfurouv ruopuvnuifuhfui",
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                3.heightBox,
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Row(
-                                                          children: [
-                                                            SvgPicture.asset(
-                                                              'assets/icon/taka_svg.svg',
-                                                              width: 15,
-                                                            ),
-                                                            Text(
-                                                              "1,50,000",
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          ],
-                                                        )),
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Stack(children: [
-                                                          Row(
-                                                            children: [
-                                                              SvgPicture.asset(
-                                                                'assets/icon/taka_svg.svg',
-                                                                width: 15,
-                                                                color:
-                                                                    orangeColor,
-                                                              ),
-                                                              Text(
-                                                                "1,50,000",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    color:
-                                                                        orangeColor),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Container(
-                                                            height: 1,
-                                                            color: Colors.black,
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    top: 10,
-                                                                    right: 10),
-                                                          )
-                                                        ]))
-                                                  ],
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ).box.padding(EdgeInsets.all(3)).make()),
-                        ),
-                      ),
-                    ),
-                    10.heightBox,
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(sets,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                    ),
-                    Container(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              banner_list.length,
-                              (index) => Column(
-                                    children: [
-                                      Material(
-                                        child: InkWell(
-                                          onTap: () {},
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Ink(
-                                            height: 180,
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                color: lightGreyColor),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                        height: 100,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(6),
-                                                            image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: AssetImage(
-                                                                  banner_list[
-                                                                      index]),
-                                                            )))
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                Text(
-                                                  "Solaymanoeunoidupoicnv u pousioufcmfurouv ruopuvnuifuhfui",
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                3.heightBox,
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Row(
-                                                          children: [
-                                                            SvgPicture.asset(
-                                                              'assets/icon/taka_svg.svg',
-                                                              width: 15,
-                                                            ),
-                                                            Text(
-                                                              "150",
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          ],
-                                                        )),
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Stack(children: [
-                                                          Row(
-                                                            children: [
-                                                              SvgPicture.asset(
-                                                                'assets/icon/taka_svg.svg',
-                                                                width: 15,
-                                                                color:
-                                                                    orangeColor,
-                                                              ),
-                                                              Text(
-                                                                "150",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    color:
-                                                                        orangeColor),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Container(
-                                                            height: 1,
-                                                            color: Colors.black,
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    top: 10,
-                                                                    right: 10),
-                                                          )
-                                                        ]))
-                                                  ],
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ).box.padding(EdgeInsets.all(3)).make()),
-                        ),
-                      ),
-                    ),
-                    10.heightBox,
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(sets,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                    ),
-                    Container(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              banner_list.length,
-                              (index) => Column(
-                                    children: [
-                                      Material(
-                                        child: InkWell(
-                                          onTap: () {},
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Ink(
-                                            height: 180,
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                color: lightGreyColor),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                        height: 100,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(6),
-                                                            image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: AssetImage(
-                                                                  banner_list[
-                                                                      index]),
-                                                            )))
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                Text(
-                                                  "Solaymanoeunoidupoicnv u pousioufcmfurouv ruopuvnuifuhfui",
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                3.heightBox,
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Row(
-                                                          children: [
-                                                            SvgPicture.asset(
-                                                              'assets/icon/taka_svg.svg',
-                                                              width: 15,
-                                                            ),
-                                                            Text(
-                                                              "150",
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          ],
-                                                        )),
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Stack(children: [
-                                                          Row(
-                                                            children: [
-                                                              SvgPicture.asset(
-                                                                'assets/icon/taka_svg.svg',
-                                                                width: 15,
-                                                                color:
-                                                                    orangeColor,
-                                                              ),
-                                                              Text(
-                                                                "150",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    color:
-                                                                        orangeColor),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Container(
-                                                            height: 1,
-                                                            color: Colors.black,
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    top: 10,
-                                                                    right: 10),
-                                                          )
-                                                        ]))
-                                                  ],
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ).box.padding(EdgeInsets.all(3)).make()),
-                        ),
-                      ),
-                    ),
-                    10.heightBox,
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(sets,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                    ),
-                    Container(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              banner_list.length,
-                              (index) => Column(
-                                    children: [
-                                      Material(
-                                        child: InkWell(
-                                          onTap: () {},
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Ink(
-                                            height: 180,
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                color: lightGreyColor),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                        height: 100,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(6),
-                                                            image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: AssetImage(
-                                                                  banner_list[
-                                                                      index]),
-                                                            )))
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                Text(
-                                                  "Solaymanoeunoidupoicnv u pousioufcmfurouv ruopuvnuifuhfui",
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                3.heightBox,
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Row(
-                                                          children: [
-                                                            SvgPicture.asset(
-                                                              'assets/icon/taka_svg.svg',
-                                                              width: 15,
-                                                            ),
-                                                            Text(
-                                                              "150",
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          ],
-                                                        )),
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Stack(children: [
-                                                          Row(
-                                                            children: [
-                                                              SvgPicture.asset(
-                                                                'assets/icon/taka_svg.svg',
-                                                                width: 15,
-                                                                color:
-                                                                    orangeColor,
-                                                              ),
-                                                              Text(
-                                                                "150",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    color:
-                                                                        orangeColor),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Container(
-                                                            height: 1,
-                                                            color: Colors.black,
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    top: 10,
-                                                                    right: 10),
-                                                          )
-                                                        ]))
-                                                  ],
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ).box.padding(EdgeInsets.all(3)).make()),
-                        ),
-                      ),
-                    ),
-                    10.heightBox,
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(sets,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                    ),
-                    Container(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              banner_list.length,
-                              (index) => Column(
-                                    children: [
-                                      Material(
-                                        child: InkWell(
-                                          onTap: () {},
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Ink(
-                                            height: 180,
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                color: lightGreyColor),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                        height: 100,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(6),
-                                                            image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: AssetImage(
-                                                                  banner_list[
-                                                                      index]),
-                                                            )))
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                Text(
-                                                  "Solaymanoeunoidupoicnv u pousioufcmfurouv ruopuvnuifuhfui",
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                                3.heightBox,
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Row(
-                                                          children: [
-                                                            SvgPicture.asset(
-                                                              'assets/icon/taka_svg.svg',
-                                                              width: 15,
-                                                            ),
-                                                            Text(
-                                                              "150",
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          ],
-                                                        )),
-                                                    Flexible(
-                                                        flex: 1,
-                                                        child: Stack(children: [
-                                                          Row(
-                                                            children: [
-                                                              SvgPicture.asset(
-                                                                'assets/icon/taka_svg.svg',
-                                                                width: 15,
-                                                                color:
-                                                                    orangeColor,
-                                                              ),
-                                                              Text(
-                                                                "150",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    color:
-                                                                        orangeColor),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Container(
-                                                            height: 1,
-                                                            color: Colors.black,
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    top: 10,
-                                                                    right: 10),
-                                                          )
-                                                        ]))
-                                                  ],
-                                                )
-                                                    .box
-                                                    .padding(EdgeInsets.all(3))
-                                                    .make(),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ).box.padding(EdgeInsets.all(3)).make()),
-                        ),
-                      ),
-                    ),
-                    10.heightBox,
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(all,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                    ),
-                    GridView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: banner_list.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: het > wdt ? 2 : 5,
-                            mainAxisSpacing: 3,
-                            crossAxisSpacing: 3,
-                            mainAxisExtent: 250),
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Material(
-                                child: InkWell(
-                                  onTap: () {},
-                                  borderRadius: BorderRadius.circular(6),
-                                  child: Ink(
-                                    height: 244,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        color: lightGreyColor),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Stack(
-                                          children: [
-                                            Container(
-                                                    height: 160,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(6),
-                                                        image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: AssetImage(
-                                                              banner_list[
-                                                                  index]),
-                                                        )))
-                                                .box
-                                                .padding(EdgeInsets.all(3))
-                                                .make(),
-                                            Container(
-                                              color: lightGreyColor,
-                                              padding: EdgeInsets.all(1),
-                                              child:Text(
-                                                "$discount% Discount",
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: orangeColor,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w500),
-                                              ),
-                                            )
-                                                .box.alignCenterRight.rounded
-                                                .padding(EdgeInsets.only(top: 5,right: 5))
-                                                .make(),
-                                          ],
-                                        ),
-                                        Text(
-                                          "Solaymanoeunoidupoicnv u pousioufcmfurouv ruopuvnuifuhfui",
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400),
-                                        ).box.padding(EdgeInsets.all(3)).make(),
-                                        3.heightBox,
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Flexible(
-                                                flex: 1,
-                                                child: Row(
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      'assets/icon/taka_svg.svg',
-                                                      width: 15,
-                                                    ),
-                                                    Text(
-                                                      "150",
-                                                      style: TextStyle(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ],
-                                                )),
-                                            Flexible(
-                                                flex: 1,
-                                                child: Stack(children: [
-                                                  Row(
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                        'assets/icon/taka_svg.svg',
-                                                        width: 15,
-                                                        color: orangeColor,
-                                                      ),
-                                                      Text(
-                                                        "150",
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: orangeColor),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Container(
-                                                    height: 1,
-                                                    color: Colors.black,
-                                                    margin: EdgeInsets.only(
-                                                        top: 10, right: 10),
-                                                  )
-                                                ]))
-                                          ],
-                                        ).box.padding(EdgeInsets.all(3)).make(),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ).box.padding(EdgeInsets.all(3)).make();
-                        })
+                    items_heading_cart("Hot deals"),
+                    hot_deals_cart(
+                        banner_list,
+                        "sadfajof dfjaoij adoifj sdadifj oiddescription",
+                        het,
+                        wdt),
+                    items_heading_cart("Sets"),
+                    sets_cart(
+                        banner_list,
+                        "sadfajof dfjaoij adoifj sdadifj oiddescription",
+                        het,
+                        wdt),
+                    items_heading_cart("All Products"),
+                    all_product_cart(item, description, het, wdt)
                   ],
                 ),
               ),

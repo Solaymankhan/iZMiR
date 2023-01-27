@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19.349" height="15.51" viewBox="0 0 19.349 15.51">
+  <g id="Group_7" data-name="Group 7" transform="translate(-987.301 -148.99)">
+    <path id="glasess_svg" d="M11,11.5V11a1,1,0,0,0-1-1H6a1,1,0,0,0-1,1v.5m6,0V13a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V11.5m6,0h2m0,0V11a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v.5m-6,0V13a2,2,0,0,0,2,2h2a2,2,0,0,0,2-2V11.5m0,0h2m-16,0H3" transform="translate(985 149)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <g id="Group_5" data-name="Group 5" transform="matrix(0.996, -0.087, 0.087, 0.996, 1001.7, 149.048)">
+      <g id="Group_3" data-name="Group 3" transform="translate(2.895 2.631)">
+        <g id="Rectangle_3" data-name="Rectangle 3" stroke="#000" stroke-width="1">
+          <rect width="1" height="9.646" rx="0.5" stroke="none"/>
+          <rect x="0.5" y="0.5" height="8.646" fill="none"/>
+        </g>
+      </g>
+      <g id="Group_4" data-name="Group 4" transform="translate(0 0.743) rotate(-48)">
+        <g id="Rectangle_3-2" data-name="Rectangle 3" stroke="#000" stroke-width="1">
+          <rect width="1" height="4.477" rx="0.5" stroke="none"/>
+          <rect x="0.5" y="0.5" height="3.477" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Group_6" data-name="Group 6" transform="matrix(-0.996, -0.087, 0.087, -0.996, 991.181, 161.279)">
+      <g id="Group_3-2" data-name="Group 3" transform="translate(2.895 0)">
+        <g id="Rectangle_3-3" data-name="Rectangle 3" stroke="#000" stroke-width="1">
+          <rect width="1" height="9.646" rx="0.5" stroke="none"/>
+          <rect x="0.5" y="0.5" height="8.646" fill="none"/>
+        </g>
+      </g>
+      <g id="Group_4-2" data-name="Group 4" transform="translate(3.327 8.538) rotate(48)">
+        <g id="Rectangle_3-4" data-name="Rectangle 3" transform="translate(0)" stroke="#000" stroke-width="1">
+          <rect width="1" height="4.477" rx="0.5" stroke="none"/>
+          <rect x="0.5" y="0.5" height="3.477" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

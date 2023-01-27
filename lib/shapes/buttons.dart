@@ -2,7 +2,7 @@ import 'package:izmir/consts/consts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-Widget home_button(wdt, het, icon, title) {
+Widget squer_button(wdt, het, icon, title) {
   return Material(
     child: InkWell(
       borderRadius: BorderRadius.circular(6),
@@ -24,6 +24,8 @@ Widget home_button(wdt, het, icon, title) {
             5.heightBox,
             Text(
               title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 15,
               ),

@@ -5,7 +5,6 @@ import 'package:izmir/controllers/home_controller.dart';
 import 'package:izmir/pages/cart_page.dart';
 import 'package:izmir/pages/category_page.dart';
 import 'package:izmir/pages/messages_page.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'consts/consts.dart';
 import 'package:flutter/services.dart';
 import 'package:izmir/pages/home_page.dart';
@@ -59,7 +58,7 @@ class _homeState extends State<home> {
         body: Column(
           children: [
             Obx(() => Expanded(
-                child: nav_body.elementAt(controller.current_nav_indx.value))),
+                child: IndexedStack(index: controller.current_nav_indx.value,children: nav_body))),
           ],
         ),
         bottomNavigationBar: Container(
