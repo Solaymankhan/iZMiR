@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>626250741141-bffiq4k2ml4vluflennb5ul2b4ig388j.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.626250741141-bffiq4k2ml4vluflennb5ul2b4ig388j</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCzkcdr116s9SqeO7BHbbJxIC8YO8LHFLM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>626250741141</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.izmir</string>
+	<key>PROJECT_ID</key>
+	<string>izmir-fb3fb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>izmir-fb3fb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:626250741141:ios:b9b911c87b9701b19e729c</string>
+</dict>
+</plist>

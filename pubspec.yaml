@@ -35,13 +35,34 @@ dependencies:
   flutter_native_splash: ^2.2.16
   get: ^4.6.5
   velocity_x: ^3.6.0
-  flutter_svg: ^1.1.6
+  flutter_svg: ^2.0.5
+  card_swiper: ^2.0.4
+  intl_phone_field: ^3.1.0
+  firebase_core: ^2.5.0
+  firebase_auth: ^4.2.6
+  firebase_storage: ^11.0.14
+  cloud_firestore: ^4.3.2
+  loading_gifs: ^0.3.0
+  crypto: ^3.0.2
+  sms_autofill: ^2.2.0
+  shared_preferences: ^2.0.17
+  connectivity_plus: ^4.0.0
+  colorful_circular_progress_indicator: ^0.0.2
+  sliding_sheet: ^0.5.2
+  image_picker: ^0.8.6+3
+  flutter_image_compress: ^2.0.2
+  csc_picker: ^0.2.7
+  numberpicker: ^2.1.1
+  cached_network_image: ^3.2.3
+  intl: ^0.17.0
+  rxdart: ^0.27.7
+  flutter_sslcommerz: ^2.2.2-nullsafety.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.11.0"
+  flutter_launcher_icons: ^0.13.1
 
 flutter_native_splash:
   color: "#FFD461"
